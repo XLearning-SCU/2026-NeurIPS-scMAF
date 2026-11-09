@@ -1,0 +1,30 @@
+dataset_type: multi_omics
+dataset: 10xmalt
+data_path: data/10xmalt.h5
+view_keys: [X1, X2]
+label_key: Y
+data_type: [RNA, ADT]
+
+encoder_dim:
+  - [256, 128]
+  - [256, 128]
+decoder_dim:
+  - [128, 256]
+  - [128, 256]
+
+num_chunks: 2
+sigma1: 3.5
+sigma2: 2.0
+filter1: true
+filter2: false
+f1: 2000
+f2: 2000
+
+epochs: 400
+batch_size: 256
+print_every: 50
+lr: 0.001
+grad_clip_norm: 10.0
+seed: 42
+output_dir: outputs
+

@@ -1,0 +1,35 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg-info/
+build/
+dist/
+
+.venv/
+venv/
+.idea/
+.vscode/
+.DS_Store
+
+# Datasets and experiment artifacts are not versioned.
+data/*
+!data/spector.h5
+outputs/*
+!outputs/.gitkeep
+log_dir/
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+
+# Generated logs outside the standard output directories.
+*.log
+
+# Kept locally but not included in the public repository.
+/tests/
+/run.sh
+
+

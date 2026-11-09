@@ -1,0 +1,24 @@
+dataset_type: multi_view
+dataset: NUSWIDE
+data_path: data/nuswide_deep_2_view.mat
+view_keys: [Img, Txt]
+label_key: label
+data_norm: standard
+
+encoder_dim:
+  - [256, 128]
+  - [256, 128]
+decoder_dim:
+  - [128, 256]
+  - [128, 256]
+
+num_chunks: 2
+sigma1: 3.5
+sigma2: 2.0
+epochs: 400
+batch_size: 256
+print_every: 50
+lr: 0.0001
+seed: 0
+output_dir: outputs
+
