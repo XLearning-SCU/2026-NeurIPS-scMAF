@@ -2,7 +2,7 @@
 
 This repository provides the official implementation of our paper:
 
-> Jun Fu, Yiding Lu, Ruohong Yang, Yunfan Li, Xi Peng,
+> Jun Fu, Yiding Lu, Ruohong Yang, Yunfan Li, Xi Peng <br>
 > *scMAF: Single-Cell Multi-Omics Clustering via Adaptive Modality Fusion*, NeurIPS 2026 (poster). 👉 [[Paper]](https://openreview.net/forum?id=HAcmGGgXow)
 
 
