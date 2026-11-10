@@ -19,23 +19,14 @@ This repository provides the official implementation of our paper:
 
 ## Installation
 
-Python 3.10 or 3.11 is recommended. For the CUDA 11.8 environment used in our
-experiments:
+Python 3.11 is recommended. Create a clean Conda environment and install the
+tested dependencies with pip:
 
 ```bash
-conda env create -f environment.yml
+conda create -n scmaf python=3.11 -y
 conda activate scmaf
-pip install -e .
+pip install -r requirements.txt
 ```
-
-For an existing PyTorch environment:
-
-```bash
-pip install -e .
-```
-
-Use `environment.yml` for new installations.
-
 
 ## Configuration
 

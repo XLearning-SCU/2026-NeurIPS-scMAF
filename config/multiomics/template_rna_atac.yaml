@@ -24,6 +24,6 @@ epochs: 400
 batch_size: 256
 print_every: 50
 lr: 0.001
-seed: 0
+seed: 42
 output_dir: outputs
 
