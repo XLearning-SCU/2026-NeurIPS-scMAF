@@ -48,6 +48,7 @@ DEFAULTS = {
     "dry_run": False,
     "resume": None,
     "grad_clip_norm": 10.0,
+    "evaluate_checkpoint": None,
 }
 
 
@@ -108,6 +109,10 @@ def _parser() -> argparse.ArgumentParser:
     parser.add_argument("--max-samples", type=int)
     parser.add_argument("--grad-clip-norm", type=float)
     parser.add_argument("--resume", help="Resume the first run from a .pt checkpoint")
+    parser.add_argument(
+        "--evaluate-checkpoint",
+        help="Load a checkpoint, run K-means evaluation, and exit without training",
+    )
     parser.add_argument("--num-workers", type=int)
     parser.add_argument("--pin-memory", action=argparse.BooleanOptionalAction)
     parser.add_argument("--save-model", action=argparse.BooleanOptionalAction)
@@ -141,7 +146,6 @@ def parse_config(argv: Sequence[str] | None = None) -> argparse.Namespace:
     for name in ("epochs", "batch_size", "print_every", "runs", "num_chunks"):
         if int(getattr(config, name)) <= 0:
             parser.error(f"{name} must be positive")
-
     data_path = Path(config.data_path).expanduser()
     if not data_path.is_absolute():
         working_candidate = Path.cwd() / data_path
@@ -159,6 +163,15 @@ def parse_config(argv: Sequence[str] | None = None) -> argparse.Namespace:
         if not resume_path.is_file():
             parser.error(f"Resume checkpoint not found: {resume_path}")
         config.resume = str(resume_path.resolve())
+    if config.evaluate_checkpoint is not None:
+        checkpoint_path = Path(config.evaluate_checkpoint).expanduser()
+        if not checkpoint_path.is_absolute():
+            checkpoint_path = Path.cwd() / checkpoint_path
+        if not checkpoint_path.is_file():
+            parser.error(f"Evaluation checkpoint not found: {checkpoint_path}")
+        config.evaluate_checkpoint = str(checkpoint_path.resolve())
+    if config.resume is not None and config.evaluate_checkpoint is not None:
+        parser.error("--resume and --evaluate-checkpoint cannot be used together")
     if config.dry_run:
         config.epochs = 1
         config.runs = 1

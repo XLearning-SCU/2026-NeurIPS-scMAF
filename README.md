@@ -28,6 +28,7 @@ conda activate scmaf
 pip install -r requirements.txt
 ```
 
+
 ## Configuration
 
 The hyperparameters and training options for all datasets used in the paper are provided as YAML configuration files in the `/config` directory.
@@ -64,6 +65,14 @@ To resume an interrupted run, pass its most recent checkpoint:
 python train.py --config config/multiomics/spector.yaml \
   --device cuda:0 --resume outputs/EXPERIMENT/run_01/last.pt
 ```
+
+To load any saved checkpoint and run K-means evaluation without training:
+
+```bash
+python train.py --config config/multiomics/spector.yaml \
+  --device cuda:0 --evaluate-checkpoint outputs/EXPERIMENT/best.pt
+```
+
 
 ## Citation
 
